@@ -16,3 +16,19 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+
+Route::resource('situacao_imovels', 'SituacaoImovelController');
+Route::resource('documentos', 'DocumentoController');
+Route::resource('area_externas', 'AreaExternaController');
+Route::resource('tipo_area_externas', 'TipoAreaExternaController');
+Route::resource('localidades', 'LocalidadeController');
+Route::resource('imovels', 'ImovelController');
+Route::resource('associados', 'AssociadoController');
+Route::resource('dependentes', 'DependenteController');
+Route::resource('ramo_atividades', 'RamoAtividadeController');
+Route::resource('contatos', 'ContatoController');
+Route::resource('telefones', 'TelefoneController');
+Route::resource('tipo_telefones', 'TipoTelefoneController');
+Route::resource('tipo_correspondecias', 'TipoCorrespondenciaController');
+Route::resource('emails', 'EmailController');

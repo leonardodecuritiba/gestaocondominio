@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAreaExternasTable extends Migration
+class CreateDocumentosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateAreaExternasTable extends Migration
      */
     public function up()
     {
-        Schema::create('area_externas', function (Blueprint $table) {
+        Schema::create('documentos', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->unsignedInteger('idtipo_area_externa');
             $table->unsignedInteger('idimovel');
 
             $table->foreign('idimovel')->references('id')->on('imovels')->onDelete('cascade');
-            $table->foreign('idtipo_area_externa')->references('id')->on('tipo_area_externas');
 
-            $table->integer('quantidade');
-            $table->decimal('area_construida',11,2);
+            $table->string('documento',100);
+            $table->string('descricao',100);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -36,6 +33,6 @@ class CreateAreaExternasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('area_externas');
+        Schema::dropIfExists('documentos');
     }
 }
