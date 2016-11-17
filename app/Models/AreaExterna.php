@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\DataHelper;
 use Illuminate\Database\Eloquent\Model;
 
 class AreaExterna extends Model
@@ -19,6 +20,15 @@ class AreaExterna extends Model
         'area_construida'
     ];
 
+    public function getAreaConstruidaAttribute($value)
+    {
+        return DataHelper::getFloat2Real($value);
+    }
+
+    public function setAreaConstruidaAttribute($value)
+    {
+        return $this->attributes['area_construida'] = DataHelper::getReal2Float($value);
+    }
     // ******************** RELASHIONSHIP ******************************
     // ************************** belongsTo ****************************
     public function tipo_area_externa()

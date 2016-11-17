@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\DataHelper;
 use Illuminate\Database\Eloquent\Model;
 
 class SituacaoImovel extends Model
@@ -14,7 +15,7 @@ class SituacaoImovel extends Model
      */
     protected $fillable = [
         'descricao',
-        'percencual_desconto'
+        'percentual_desconto'
     ];
 
     // ******************** RELASHIONSHIP ******************************
@@ -22,6 +23,16 @@ class SituacaoImovel extends Model
     public function imoveis()
     {
         return $this->hasOne('App\Models\Imovel', 'idsituacao_imovel');
+    }
+
+    public function getPercentualDescontoAttribute($value)
+    {
+        return DataHelper::getFloat2Real($value);
+    }
+
+    public function setPercentualDescontoAttribute($value)
+    {
+        return $this->attributes['percentual_desconto'] = DataHelper::getReal2Float($value);
     }
 }
 

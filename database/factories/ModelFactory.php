@@ -53,7 +53,7 @@ $factory->define(App\Models\Localidade::class, function (Faker\Generator $faker)
 $factory->define(App\Models\SituacaoImovel::class, function (Faker\Generator $faker) {
     return [
         'descricao' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'percencual_desconto' => $faker->randomFloat($nbMaxDecimals = 2, $min = 50, $max = 10000)
+        'percentual_desconto' => $faker->randomFloat($nbMaxDecimals = 2, $min = 50, $max = 10000)
     ];
 });
 /*
@@ -194,7 +194,7 @@ $factory->define(App\Models\Imovel::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\Documento::class, function (Faker\Generator $faker) {
     return [
         'idimovel' => $faker->numberBetween($min = 1, $max = 10),
-        'documento' => $faker->image($dir = asset('uploads/documentos/'), $width = 640, $height = 480, 'technics', false),
+        'documento' => $faker->image($dir = storage_path('uploads/documentos/'), $width = 640, $height = 480, 'technics', false),
         'descricao' => $faker->sentence($nbWords = 6, $variableNbWords = true)
     ];
 });

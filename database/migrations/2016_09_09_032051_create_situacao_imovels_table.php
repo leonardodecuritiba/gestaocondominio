@@ -16,7 +16,7 @@ class CreateSituacaoImovelsTable extends Migration
         Schema::create('situacao_imovels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descricao',100);
-            $table->decimal('percencual_desconto',11,2);
+            $table->decimal('percentual_desconto', 11, 2);
             $table->softDeletes();
             $table->timestamps();
         });

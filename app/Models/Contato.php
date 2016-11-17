@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\DataHelper;
 use Illuminate\Database\Eloquent\Model;
 
 class Contato extends Model
@@ -23,6 +24,17 @@ class Contato extends Model
         'numero',
         'complemento'
     ];
+
+
+    public function setCepAttribute($value)
+    {
+        return $this->attributes['cep'] = DataHelper::getOnlyNumbers($value);
+    }
+
+    public function getCepAttribute($value)
+    {
+        return DataHelper::mask($value, '#####-###');
+    }
     // ******************** RELASHIONSHIP ******************************
     // ************************** belongsTo ****************************
     public function tipo_correspondencia()

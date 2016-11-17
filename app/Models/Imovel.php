@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\DataHelper;
 use Illuminate\Database\Eloquent\Model;
 
 class Imovel extends Model
@@ -29,6 +30,46 @@ class Imovel extends Model
         'data_mudanca'
     ];
 
+
+    public function getAreaImovelAttribute($value)
+    {
+        return DataHelper::getFloat2Real($value);
+    }
+
+    public function setAreaImovelAttribute($value)
+    {
+        return $this->attributes['area_imovel'] = DataHelper::getReal2Float($value);
+    }
+
+    public function getAreaConstruidaAttribute($value)
+    {
+        return DataHelper::getFloat2Real($value);
+    }
+
+    public function setAreaConstruidaAttribute($value)
+    {
+        return $this->attributes['area_construida'] = DataHelper::getReal2Float($value);
+    }
+
+    public function getAreaAjardinadaAttribute($value)
+    {
+        return DataHelper::getFloat2Real($value);
+    }
+
+    public function setAreaAjardinadaAttribute($value)
+    {
+        return $this->attributes['area_ajardinada'] = DataHelper::getReal2Float($value);
+    }
+
+    public function setDataMudancaAttribute($value)
+    {
+        return $this->attributes['data_mudanca'] = DataHelper::setDate($value);
+    }
+
+    public function getDataMudancaAttribute($value)
+    {
+        return DataHelper::getPrettyDate($value);
+    }
     // ******************** RELASHIONSHIP ******************************
     // ************************** belongsTo ****************************
     public function proprietario()
@@ -54,7 +95,12 @@ class Imovel extends Model
     // ************************** hasMany ******************************
     public function areas_externas()
     {
-        return $this->hasOne('App\Models\AreaExterna', 'idtipo_area_externa');
+        return $this->hasMany('App\Models\AreaExterna', 'idimovel');
+    }
+
+    public function documentos()
+    {
+        return $this->hasMany('App\Models\AreaExterna', 'idimovel');
     }
 
 

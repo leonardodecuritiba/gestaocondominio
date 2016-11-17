@@ -17,18 +17,30 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-
+/*
+|--------------------------------------------------------------------------
+| API Basic Routes
+|--------------------------------------------------------------------------
+*/
+Route::resource('ramo_atividades', 'RamoAtividadeController');
+Route::resource('tipo_correspondencias', 'TipoCorrespondenciaController');
+Route::resource('tipo_telefones', 'TipoTelefoneController');
+Route::resource('localidades', 'LocalidadeController');
 Route::resource('situacao_imovels', 'SituacaoImovelController');
+Route::resource('tipo_area_externas', 'TipoAreaExternaController');
+Route::resource('associados', 'AssociadoController');
+Route::resource('telefones', 'TelefoneController');
+Route::resource('emails', 'EmailController');
+Route::resource('dependentes', 'DependenteController');
+
+Route::resource('imovels', 'ImovelController');
 Route::resource('documentos', 'DocumentoController');
 Route::resource('area_externas', 'AreaExternaController');
-Route::resource('tipo_area_externas', 'TipoAreaExternaController');
-Route::resource('localidades', 'LocalidadeController');
-Route::resource('imovels', 'ImovelController');
-Route::resource('associados', 'AssociadoController');
-Route::resource('dependentes', 'DependenteController');
-Route::resource('ramo_atividades', 'RamoAtividadeController');
-Route::resource('contatos', 'ContatoController');
-Route::resource('telefones', 'TelefoneController');
-Route::resource('tipo_telefones', 'TipoTelefoneController');
-Route::resource('tipo_correspondecias', 'TipoCorrespondenciaController');
-Route::resource('emails', 'EmailController');
+
+
+
+
+
+//Route::resource('contatos', 'ContatoController');
+//Route::resource('telefones', 'TelefoneController');
+//Route::resource('emails', 'EmailController');

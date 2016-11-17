@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\DataHelper;
 use Illuminate\Database\Eloquent\Model;
 
 class Associado extends Model
@@ -24,18 +25,47 @@ class Associado extends Model
         'data_nascimento'
     ];
 
+
+    public function setCpfAttribute($value)
+    {
+        return $this->attributes['cpf'] = DataHelper::getOnlyNumbers($value);
+    }
+
+    public function getCpfAttribute($value)
+    {
+        return DataHelper::mask($value, '###.###.###-##');
+    }
+
+    public function setRgAttribute($value)
+    {
+        return $this->attributes['rg'] = DataHelper::getOnlyNumbers($value);
+    }
+
+    public function getRgAttribute($value)
+    {
+        return DataHelper::mask($value, '#.###.###-##');
+    }
+
+    public function setDataNascimentoAttribute($value)
+    {
+        return $this->attributes['data_nascimento'] = DataHelper::setDate($value);
+    }
+
+    public function getDataNascimentoAttribute($value)
+    {
+        return DataHelper::getPrettyDate($value);
+    }
     // ******************** RELASHIONSHIP ******************************
     // ************************** belongsTo ****************************
     public function ramo_atividade()
     {
         return $this->belongsTo('App\Models\RamoAtividade', 'idramo_atividades');
     }
-
-    // ************************** hasOne *******************************
     public function contato()
     {
-        return $this->hasOne('App\Models\Contato', 'idcontato');
+        return $this->belongsTo('App\Models\Contato', 'idcontato');
     }
+    // ************************** hasOne *******************************
 
     // ************************** hasMany ******************************
     public function inquilinos_imoveis()

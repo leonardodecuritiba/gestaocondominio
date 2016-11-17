@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\DataHelper;
 use Illuminate\Database\Eloquent\Model;
 
 class Telefone extends Model
@@ -18,6 +19,15 @@ class Telefone extends Model
         'numero'
     ];
 
+    public function setNumeroAttribute($value)
+    {
+        return $this->attributes['numero'] = DataHelper::getOnlyNumbers($value);
+    }
+
+    public function getNumeroAttribute($value)
+    {
+        return DataHelper::mask($value, '(##)#####-####');
+    }
     // ******************** RELASHIONSHIP ******************************
     // ************************** belongsTo ****************************
     public function contato()

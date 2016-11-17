@@ -2,13 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\Associado;
-use App\Models\Contato;
-use App\Models\Imovel;
-use App\Observers\AssociadoObserver;
+use App\Helpers\DateHelper;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class HelperServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -17,9 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Associado::observe(AssociadoObserver::class);
-        Contato::observe(ContatoObserver::class);
-        Imovel::observe(ImovelObserver::class);
+        //
     }
 
     /**
@@ -30,5 +25,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->bind('dateHelper', function () {
+            return new DataHelper();
+        });
     }
 }
