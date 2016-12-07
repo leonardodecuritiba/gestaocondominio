@@ -70,12 +70,12 @@ class Associado extends Model
     // ************************** hasMany ******************************
     public function inquilinos_imoveis()
     {
-        return $this->hasMany('App\Models\Imovel', 'idinquilino');
+        return $this->hasMany('App\Models\ImovelPermanente', 'idinquilino');
     }
 
     public function proprietario_imoveis()
     {
-        return $this->hasMany('App\Models\Imovel', 'idproprietario');
+        return $this->hasMany('App\Models\ImovelPermanente', 'idproprietario');
     }
 
     public function dependentes()

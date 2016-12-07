@@ -16,13 +16,9 @@ class CreateImovelsTable extends Migration
         Schema::create('imovels', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('idproprietario');
-            $table->unsignedInteger('idinquilino')->nullable();
             $table->unsignedInteger('idlocalidade');
             $table->unsignedInteger('idsituacao_imovel');
 
-            $table->foreign('idproprietario')->references('id')->on('associados')->onDelete('cascade');
-            $table->foreign('idinquilino')->references('id')->on('associados')->onDelete('SET NULL');
             $table->foreign('idlocalidade')->references('id')->on('localidades')->onDelete('cascade');
             $table->foreign('idsituacao_imovel')->references('id')->on('situacao_imovels')->onDelete('cascade');
 
@@ -36,10 +32,10 @@ class CreateImovelsTable extends Migration
             $table->decimal('area_imovel',11,2);
             $table->decimal('area_construida',11,2);
             $table->decimal('area_ajardinada',11,2);
-            $table->date('data_mudanca');
 
             $table->softDeletes();
             $table->timestamps();
+            $table->boolean('softdeleted')->default(0);
         });
     }
 

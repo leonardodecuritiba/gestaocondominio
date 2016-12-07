@@ -170,8 +170,6 @@ $factory->define(App\Models\Telefone::class, function (Faker\Generator $faker) {
  */
 $factory->define(App\Models\Imovel::class, function (Faker\Generator $faker) {
     return [
-        'idproprietario' => $faker->numberBetween($min = 1, $max = 10),
-        'idinquilino' => $faker->numberBetween($min = 1, $max = 10),
         'idlocalidade' => 1,
         'idsituacao_imovel' => $faker->numberBetween($min = 1, $max = 3),
         'cep' => $faker->randomNumber($nbDigits = 8),
@@ -183,7 +181,7 @@ $factory->define(App\Models\Imovel::class, function (Faker\Generator $faker) {
         'area_imovel' => $faker->randomFloat($nbMaxDecimals = 2, $min = 50, $max = 10000),
         'area_construida' => $faker->randomFloat($nbMaxDecimals = 2, $min = 50, $max = 10000),
         'area_ajardinada' => $faker->randomFloat($nbMaxDecimals = 2, $min = 50, $max = 10000),
-        'data_mudanca' => $faker->dateTimeThisCentury($max = 'now')->format('Y-m-d')
+        'softdeleted' => $faker->boolean(),
     ];
 });
 /*
@@ -209,5 +207,19 @@ $factory->define(App\Models\AreaExterna::class, function (Faker\Generator $faker
         'idtipo_area_externa' => $faker->numberBetween($min = 1, $max = 3),
         'quantidade' => $faker->randomFloat($nbMaxDecimals = 2, $min = 50, $max = 10000),
         'area_construida' => $faker->randomFloat($nbMaxDecimals = 2, $min = 50, $max = 10000),
+    ];
+});
+/*
+|--------------------------------------------------------------------------
+| Imovel Parmanente Factories
+|--------------------------------------------------------------------------
+ */
+$factory->define(App\Models\ImovelPermanente::class, function (Faker\Generator $faker) {
+    return [
+        'idproprietario' => $faker->numberBetween($min = 1, $max = 10),
+        'idinquilino' => $faker->numberBetween($min = 1, $max = 10),
+        'idimovel' => $faker->numberBetween($min = 1, $max = 10),
+        'data_mudanca' => $faker->dateTimeThisCentury($max = 'now')->format('Y-m-d'),
+        'imovel_principal' => $faker->boolean(),
     ];
 });

@@ -36,6 +36,7 @@ Route::resource('dependentes', 'DependenteController');
 Route::resource('imovels', 'ImovelController');
 Route::resource('documentos', 'DocumentoController');
 Route::resource('area_externas', 'AreaExternaController');
+Route::resource('imovel_permanentes', 'AreaExternaController');
 
 
 

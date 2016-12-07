@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSituacaoImovelsTable extends Migration
+class CreateSituacaoImoveisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSituacaoImovelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('situacao_imovels', function (Blueprint $table) {
+        Schema::create('situacao_imoveis', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descricao',100);
             $table->decimal('percentual_desconto', 11, 2);
@@ -29,6 +29,6 @@ class CreateSituacaoImovelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('situacao_imovels');
+        Schema::dropIfExists('situacao_imoveis');
     }
 }

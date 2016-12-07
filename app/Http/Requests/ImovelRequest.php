@@ -43,7 +43,7 @@ class ImovelRequest extends FormRequest
                     'obs' => 'required',
                     'status' => 'required',
                     'area_imovel' => 'required|numeric',
-                    'area_construida' => 'required|numeric'
+                    'area_construida' => 'required|numeric',
                 ];
             }
             case 'PUT':

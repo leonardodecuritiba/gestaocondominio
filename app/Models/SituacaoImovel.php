@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SituacaoImovel extends Model
 {
     public $timestamps = true;
+    protected $table = 'situacao_imoveis';
     /**
      * The attributes that are mass assignable.
      *

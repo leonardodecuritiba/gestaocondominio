@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ImovelRequest;
 use App\Models\Imovel;
 
-class ImovelController extends Controller
+class ImovelPermanenteController extends Controller
 {
-    private $name = 'Imóvel';
+    private $name = 'Imóvel Permanente';
 
     /**
      * Display a listing of the resource.

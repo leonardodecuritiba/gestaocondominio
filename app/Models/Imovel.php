@@ -14,8 +14,6 @@ class Imovel extends Model
      * @var array
      */
     protected $fillable = [
-        'idproprietario',
-        'idinquilino',
         'idlocalidade',
         'idsituacao_imovel',
         'cep',
@@ -27,7 +25,7 @@ class Imovel extends Model
         'area_imovel',
         'area_construida',
         'area_ajardinada',
-        'data_mudanca'
+        'softdeleted'
     ];
 
 
@@ -61,27 +59,8 @@ class Imovel extends Model
         return $this->attributes['area_ajardinada'] = DataHelper::getReal2Float($value);
     }
 
-    public function setDataMudancaAttribute($value)
-    {
-        return $this->attributes['data_mudanca'] = DataHelper::setDate($value);
-    }
-
-    public function getDataMudancaAttribute($value)
-    {
-        return DataHelper::getPrettyDate($value);
-    }
     // ******************** RELASHIONSHIP ******************************
     // ************************** belongsTo ****************************
-    public function proprietario()
-    {
-        return $this->belongsTo('App\Models\Associado', 'idproprietario');
-    }
-
-    public function inquilino()
-    {
-        return $this->belongsTo('App\Models\Associado', 'idinquilino');
-    }
-
     public function localidade()
     {
         return $this->belongsTo('App\Models\Localidade', 'idlocalidade');
@@ -103,5 +82,9 @@ class Imovel extends Model
         return $this->hasMany('App\Models\AreaExterna', 'idimovel');
     }
 
+    public function imoveis_permanentes()
+    {
+        return $this->hasMany('App\Models\ImovelPermanente', 'idimovel');
+    }
 
 }
