@@ -18,6 +18,7 @@ class CreateLocalidadesTable extends Migration
             $table->string('descricao',100);
             $table->softDeletes();
             $table->timestamps();
+            $table->boolean('softdeleted')->default(0);
         });
     }
 

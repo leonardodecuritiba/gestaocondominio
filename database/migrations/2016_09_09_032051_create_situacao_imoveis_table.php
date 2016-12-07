@@ -19,6 +19,7 @@ class CreateSituacaoImoveisTable extends Migration
             $table->decimal('percentual_desconto', 11, 2);
             $table->softDeletes();
             $table->timestamps();
+            $table->boolean('softdeleted')->default(0);
         });
     }
 

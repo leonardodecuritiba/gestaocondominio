@@ -20,7 +20,7 @@ class CreateImovelsTable extends Migration
             $table->unsignedInteger('idsituacao_imovel');
 
             $table->foreign('idlocalidade')->references('id')->on('localidades')->onDelete('cascade');
-            $table->foreign('idsituacao_imovel')->references('id')->on('situacao_imovels')->onDelete('cascade');
+            $table->foreign('idsituacao_imovel')->references('id')->on('situacao_imoveis')->onDelete('cascade');
 
             $table->string('cep',16);
             $table->string('quadra',8);

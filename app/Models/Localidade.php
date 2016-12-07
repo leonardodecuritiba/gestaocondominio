@@ -13,7 +13,8 @@ class Localidade extends Model
      * @var array
      */
     protected $fillable = [
-        'descricao'
+        'descricao',
+        'softdeleted'
     ];
 
     // ******************** RELASHIONSHIP ******************************

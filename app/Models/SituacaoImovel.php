@@ -16,7 +16,8 @@ class SituacaoImovel extends Model
      */
     protected $fillable = [
         'descricao',
-        'percentual_desconto'
+        'percentual_desconto',
+        'softdeleted'
     ];
 
     // ******************** RELASHIONSHIP ******************************
