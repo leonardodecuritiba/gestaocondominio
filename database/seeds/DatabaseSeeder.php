@@ -40,5 +40,14 @@ class DatabaseSeeder extends Seeder
         $this->call(BancoSeeder::class);
         $this->call(ContaBancariaSeeder::class);
 
+        //financeiro_estoque_v1.a
+        $this->call(UnidadeProdutoSeeder::class);
+        $this->call(GrupoProdutoSeeder::class);
+        $this->call(ProdutoSeeder::class);
+
+        //financeiro_diversos_v1.a
+        $this->call(DependenteSeeder::class);
+        $this->call(FeriadoSeeder::class);
+
     }
 }
