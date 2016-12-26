@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TipoInadimplenciaRequest;
-use App\TipoInadimplencia;
+use App\Models\TipoInadimplencia;
 
 class TipoInadimplenciaController extends Controller
 {

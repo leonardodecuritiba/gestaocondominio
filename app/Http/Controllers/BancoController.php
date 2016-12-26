@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TipoLancamentoRequest;
-use App\Models\TipoLancamento;
+use App\Models\Banco;
+use App\Http\Requests\BancoRequest;
 
-class TipoLancamentoController extends Controller
+class BancoController extends Controller
 {
-    private $name = 'Tipo de Lançamento';
+    private $name = 'Banco';
 
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class TipoLancamentoController extends Controller
      */
     public function index()
     {
-        $Data = TipoLancamento::all();
+        $Data = Banco::all();
         if (count($Data)) {
             return response()->success($Data);
         }
@@ -26,14 +26,14 @@ class TipoLancamentoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  TipoLancamentoRequest $request
+     * @param  BancoRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TipoLancamentoRequest $request)
+    public function store(BancoRequest $request)
     {
         try {
             $data = $request->all();
-            $Data = TipoLancamento::create($data);
+            $Data = Banco::create($data);
         } catch (Exception $e) {
             return response()->error($e->getMessage);
         }
@@ -48,7 +48,7 @@ class TipoLancamentoController extends Controller
      */
     public function show($id)
     {
-        $Data = TipoLancamento::find($id);
+        $Data = Banco::find($id);
         if (count($Data)) {
             return response()->success($Data);
         } else {
@@ -59,13 +59,13 @@ class TipoLancamentoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  TipoLancamentoRequest $request
+     * @param  BancoRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TipoLancamentoRequest $request, $id)
+    public function update(BancoRequest $request, $id)
     {
-        $Data = TipoLancamento::find($id);
+        $Data = Banco::find($id);
         if (count($Data)) {
             try {
                 $data = $request->all();
@@ -87,7 +87,7 @@ class TipoLancamentoController extends Controller
      */
     public function destroy($id)
     {
-        $Data = TipoLancamento::find($id);
+        $Data = Banco::find($id);
         if (count($Data)) {
             try {
                 $Data->delete();

@@ -30,11 +30,15 @@ class DatabaseSeeder extends Seeder
         $this->call(DocumentoSeeder::class); //20
         $this->call(AreaExternaSeeder::class); //20
 
-
+        //financeiro_base_v1.a
         $this->call(GrupoLancamentoSeeder::class);
         $this->call(TipoLancamentoSeeder::class);
         $this->call(TipoInadimplenciaSeeder::class);
         $this->call(SituacaoInadimplenciaSeeder::class);
+
+        //financeiro_bancario_v1.a
+        $this->call(BancoSeeder::class);
+        $this->call(ContaBancariaSeeder::class);
 
     }
 }

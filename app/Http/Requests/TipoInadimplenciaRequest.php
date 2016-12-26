@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\TipoInadimplencia;
+use App\Models\TipoInadimplencia;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 

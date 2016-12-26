@@ -21,7 +21,7 @@ class SituacaoInadimplenciaSeeder extends Seeder
             ['idtipo_inadimplencia' => 2, 'descricao' => 'Som alto']
         ];
         foreach ($data as $dt) {
-            \App\SituacaoInadimplencia::create($dt);
+            \App\Models\SituacaoInadimplencia::create($dt);
         }
         echo "\n*** Completo em " . round((microtime(true) - $start), 3) . "s ***";
     }

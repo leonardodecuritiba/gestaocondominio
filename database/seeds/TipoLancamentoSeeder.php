@@ -23,7 +23,7 @@ class TipoLancamentoSeeder extends Seeder
             ['idgrupo_lancamento' => 4, 'descricao' => 'TAXA OUTRA', 'fluxo' => 'DESPESA']
         ];
         foreach ($data as $dt) {
-            \App\TipoLancamento::create($dt);
+            \App\Models\TipoLancamento::create($dt);
         }
         echo "\n*** Completo em " . round((microtime(true) - $start), 3) . "s ***";
     }

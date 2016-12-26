@@ -38,12 +38,21 @@ Route::resource('documentos', 'DocumentoController');
 Route::resource('area_externas', 'AreaExternaController');
 Route::resource('imovel_permanentes', 'ImovelPermanenteController');
 
-//financeiro
+/*
+|--------------------------------------------------------------------------
+| API Basic Routes - FINANCEIRO
+|--------------------------------------------------------------------------
+*/
+//financeiro_base_v1.a
 Route::resource('grupo_lancamentos', 'GrupoLancamentoController');
 Route::resource('tipo_lancamentos', 'TipoLancamentoController');
 Route::resource('tipo_inadimplencias', 'TipoInadimplenciaController');
 Route::resource('situacao_inadimplencias', 'SituacaoInadimplenciaController');
+//financeiro_bancario_v1.a
+Route::resource('bancos', 'BancoController');
+Route::resource('conta_bancarias', 'ContaBancariaController');
 
+//financeiro_estoque_v1.a
 
 
 //Route::resource('contatos', 'ContatoController');

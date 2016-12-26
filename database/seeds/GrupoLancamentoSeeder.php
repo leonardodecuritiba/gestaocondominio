@@ -21,7 +21,7 @@ class GrupoLancamentoSeeder extends Seeder
             ['descricao' => 'IPTU']
         ];
         foreach ($data as $dt) {
-            \App\GrupoLancamento::create($dt);
+            \App\Models\GrupoLancamento::create($dt);
         }
         echo "\n*** Completo em " . round((microtime(true) - $start), 3) . "s ***";
     }

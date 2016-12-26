@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +16,7 @@ class GrupoLancamento extends Model
         'descricao'
     ];
     // ******************** RELASHIONSHIP ******************************
-    // ************************** belongsTo ****************************
+    // ************************** hasMany ****************************
     public function tipo_lancamentos()
     {
         return $this->hasMany('App\Models\TipoLancamento', 'idgrupo_lancamento');

@@ -19,7 +19,7 @@ class TipoInadimplenciaSeeder extends Seeder
             ['descricao' => 'Judicial']
         ];
         foreach ($data as $dt) {
-            \App\TipoInadimplencia::create($dt);
+            \App\Models\TipoInadimplencia::create($dt);
         }
         echo "\n*** Completo em " . round((microtime(true) - $start), 3) . "s ***";
     }

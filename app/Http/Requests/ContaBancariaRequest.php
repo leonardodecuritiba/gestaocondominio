@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Models\SituacaoInadimplencia;
+use App\Models\ContaBancaria;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 
 
-class SituacaoInadimplenciaRequest extends FormRequest
+class ContaBancariaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class SituacaoInadimplenciaRequest extends FormRequest
      */
     public function rules()
     {
-        $Data = SituacaoInadimplencia::find($this->situacao_inadimplencia);
+        $Data = ContaBancaria::find($this->conta_bancaria);
         $id = count($Data) ? $Data->id : 0;
         switch ($this->method()) {
             case 'GET':
@@ -36,16 +36,26 @@ class SituacaoInadimplenciaRequest extends FormRequest
             }
             case 'POST': {
                 return [
-                    'idtipo_inadimplencia' => 'required|exists:tipo_inadimplencias,id',
-                    'descricao' => 'required|unique:situacao_inadimplencias|min:3|max:100',
+                    'idbanco' => 'required|exists:bancos,id',
+                    'agencia' => 'required',
+                    'conta' => 'required',
+                    'tipo' => 'required',
+                    'operacao' => 'required',
+                    'relatorio' => 'required',
+                    'saldo' => 'required',
                 ];
                 break;
             }
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'idtipo_inadimplencia' => 'required|exists:tipo_inadimplencias,id',
-                    'descricao' => 'required|unique:situacao_inadimplencias,descricao,' . $id . ',id|min:3|max:100',
+                    'idbanco' => 'required|exists:bancos,id',
+                    'agencia' => 'required',
+                    'conta' => 'required',
+                    'tipo' => 'required',
+                    'operacao' => 'required',
+                    'relatorio' => 'required',
+                    'saldo' => 'required',
                 ];
                 break;
             }

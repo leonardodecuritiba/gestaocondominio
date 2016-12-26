@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\TipoLancamento;
+use App\Models\TipoLancamento;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 

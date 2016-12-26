@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\GrupoLancamento;
+use App\Models\GrupoLancamento;
 use App\Http\Requests\GrupoLancamentoRequest;
 
 class GrupoLancamentoController extends Controller

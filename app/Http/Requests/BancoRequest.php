@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Models\SituacaoInadimplencia;
+use App\Models\Banco;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 
 
-class SituacaoInadimplenciaRequest extends FormRequest
+class BancoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class SituacaoInadimplenciaRequest extends FormRequest
      */
     public function rules()
     {
-        $Data = SituacaoInadimplencia::find($this->situacao_inadimplencia);
+        $Data = Banco::find($this->banco);
         $id = count($Data) ? $Data->id : 0;
         switch ($this->method()) {
             case 'GET':
@@ -36,16 +36,18 @@ class SituacaoInadimplenciaRequest extends FormRequest
             }
             case 'POST': {
                 return [
-                    'idtipo_inadimplencia' => 'required|exists:tipo_inadimplencias,id',
-                    'descricao' => 'required|unique:situacao_inadimplencias|min:3|max:100',
+                    'codigo' => 'required|min:3|max:20',
+                    'descricao' => 'required|min:3|max:100',
+                    'url' => 'required|min:3|max:500',
                 ];
                 break;
             }
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'idtipo_inadimplencia' => 'required|exists:tipo_inadimplencias,id',
-                    'descricao' => 'required|unique:situacao_inadimplencias,descricao,' . $id . ',id|min:3|max:100',
+                    'codigo' => 'required|min:3|max:20',
+                    'descricao' => 'required|min:3|max:100',
+                    'url' => 'required|min:3|max:500',
                 ];
                 break;
             }
