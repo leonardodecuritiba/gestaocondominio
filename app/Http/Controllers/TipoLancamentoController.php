@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ImovelRequest;
-use App\Models\Imovel;
+use App\Http\Requests\TipoLancamentoRequest;
+use App\TipoLancamento;
 
-class ImovelController extends Controller
+class TipoLancamentoController extends Controller
 {
-    private $name = 'Imóvel';
+    private $name = 'Tipo de Lançamento';
 
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ImovelController extends Controller
      */
     public function index()
     {
-        $Data = Imovel::complete();
+        $Data = TipoLancamento::all();
         if (count($Data)) {
             return response()->success($Data);
         }
@@ -26,14 +26,14 @@ class ImovelController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ImovelRequest $request
+     * @param  TipoLancamentoRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ImovelRequest $request)
+    public function store(TipoLancamentoRequest $request)
     {
         try {
             $data = $request->all();
-            $Data = Imovel::create($data);
+            $Data = TipoLancamento::create($data);
         } catch (Exception $e) {
             return response()->error($e->getMessage);
         }
@@ -48,7 +48,7 @@ class ImovelController extends Controller
      */
     public function show($id)
     {
-        $Data = Imovel::complete($id);
+        $Data = TipoLancamento::find($id);
         if (count($Data)) {
             return response()->success($Data);
         } else {
@@ -59,13 +59,13 @@ class ImovelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  ImovelRequest $request
+     * @param  TipoLancamentoRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ImovelRequest $request, $id)
+    public function update(TipoLancamentoRequest $request, $id)
     {
-        $Data = Imovel::find($id);
+        $Data = TipoLancamento::find($id);
         if (count($Data)) {
             try {
                 $data = $request->all();
@@ -87,11 +87,9 @@ class ImovelController extends Controller
      */
     public function destroy($id)
     {
-        $Data = Imovel::find($id);
+        $Data = TipoLancamento::find($id);
         if (count($Data)) {
             try {
-                $Data->softdeleted = 1;
-                $Data->save();
                 $Data->delete();
             } catch (Exception $e) {
                 return response()->error($e->getMessage);
@@ -100,5 +98,6 @@ class ImovelController extends Controller
         } else {
             return response()->error(trans('messages.crud.MGE', ['name' => $this->name]));
         }
+
     }
 }

@@ -36,9 +36,13 @@ Route::resource('dependentes', 'DependenteController');
 Route::resource('imovels', 'ImovelController');
 Route::resource('documentos', 'DocumentoController');
 Route::resource('area_externas', 'AreaExternaController');
-Route::resource('imovel_permanentes', 'AreaExternaController');
+Route::resource('imovel_permanentes', 'ImovelPermanenteController');
 
-
+//financeiro
+Route::resource('grupo_lancamentos', 'GrupoLancamentoController');
+Route::resource('tipo_lancamentos', 'TipoLancamentoController');
+Route::resource('tipo_inadimplencias', 'TipoInadimplenciaController');
+Route::resource('situacao_inadimplencias', 'SituacaoInadimplenciaController');
 
 
 

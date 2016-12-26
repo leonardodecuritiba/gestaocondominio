@@ -28,6 +28,10 @@ class Imovel extends Model
         'softdeleted'
     ];
 
+    static public function complete($id = NULL)
+    {
+        return ($id != NULL) ? self::where('id', $id)->with('imoveis_permanentes')->first() : self::with('imoveis_permanentes')->get();
+    }
 
     public function getAreaImovelAttribute($value)
     {
@@ -84,7 +88,7 @@ class Imovel extends Model
 
     public function imoveis_permanentes()
     {
-        return $this->hasMany('App\Models\ImovelPermanente', 'idimovel');
+        return $this->hasMany('App\Models\ImovelPermanente', 'id_imovel');
     }
 
 }

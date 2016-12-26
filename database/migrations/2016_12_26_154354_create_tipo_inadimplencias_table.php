@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDocumentosTable extends Migration
+class CreateTipoInadimplenciasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +12,9 @@ class CreateDocumentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('documentos', function (Blueprint $table) {
+        Schema::create('tipo_inadimplencias', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('idimovel');
-            $table->foreign('idimovel')->references('id')->on('imovels')->onDelete('cascade');
-
-            $table->string('documento',100);
-            $table->string('descricao',100);
+            $table->string('descricao', 100)->unique();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +27,6 @@ class CreateDocumentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documentos');
+        Schema::drop('tipo_inadimplencias');
     }
 }

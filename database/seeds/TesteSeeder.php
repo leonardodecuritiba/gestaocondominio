@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class TesteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -25,16 +25,13 @@ class DatabaseSeeder extends Seeder
         $this->call(EmailSeeder::class); //10
         $this->call(TelefoneSeeder::class); //10
 
-
         $this->call(ImovelSeeder::class); //10
         $this->call(DocumentoSeeder::class); //20
         $this->call(AreaExternaSeeder::class); //20
 
-
         $this->call(GrupoLancamentoSeeder::class);
         $this->call(TipoLancamentoSeeder::class);
-        $this->call(TipoInadimplenciaSeeder::class);
+        $this->call(TipoCorrespondenciaSeeder::class);
         $this->call(SituacaoInadimplenciaSeeder::class);
-
     }
 }
