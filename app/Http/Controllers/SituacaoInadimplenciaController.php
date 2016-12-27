@@ -20,7 +20,7 @@ class SituacaoInadimplenciaController extends Controller
         if (count($Data)) {
             return response()->success($Data);
         }
-        return response()->error(trans('messages.crud.MAE', ['name' => $this->name]));
+        return response()->error(trans('messages.crud.FAE', ['name' => $this->name]));
     }
 
     /**
@@ -37,7 +37,7 @@ class SituacaoInadimplenciaController extends Controller
         } catch (Exception $e) {
             return response()->error($e->getMessage);
         }
-        return response()->success(trans('messages.crud.MSS', ['name' => $this->name]));
+        return response()->success(trans('messages.crud.FSS', ['name' => $this->name]));
     }
 
     /**
@@ -52,7 +52,7 @@ class SituacaoInadimplenciaController extends Controller
         if (count($Data)) {
             return response()->success($Data);
         } else {
-            return response()->error(trans('messages.crud.MGE', ['name' => $this->name]));
+            return response()->error(trans('messages.crud.FGE', ['name' => $this->name]));
         }
     }
 
@@ -73,9 +73,9 @@ class SituacaoInadimplenciaController extends Controller
             } catch (Exception $e) {
                 return response()->error($e->getMessage);
             }
-            return response()->success(trans('messages.crud.MUS', ['name' => $this->name]));
+            return response()->success(trans('messages.crud.FUS', ['name' => $this->name]));
         } else {
-            return response()->error(trans('messages.crud.MGE', ['name' => $this->name]));
+            return response()->error(trans('messages.crud.FGE', ['name' => $this->name]));
         }
     }
 
@@ -94,9 +94,9 @@ class SituacaoInadimplenciaController extends Controller
             } catch (Exception $e) {
                 return response()->error($e->getMessage);
             }
-            return response()->success(trans('messages.crud.MDS', ['name' => $this->name]));
+            return response()->success(trans('messages.crud.FDS', ['name' => $this->name]));
         } else {
-            return response()->error(trans('messages.crud.MGE', ['name' => $this->name]));
+            return response()->error(trans('messages.crud.FGE', ['name' => $this->name]));
         }
 
     }

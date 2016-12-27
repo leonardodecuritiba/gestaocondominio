@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContaBancaria;
-use App\Http\Requests\ContaBancariaRequest;
+use App\Models\UnidadeProduto;
+use App\Http\Requests\UnidadeProdutoRequest;
 
-class ContaBancariaController extends Controller
+class UnidadeProdutoController extends Controller
 {
-    private $name = 'ContaBancaria';
+    private $name = 'Unidade de Produto';
 
     /**
      * Display a listing of the resource.
@@ -16,24 +16,24 @@ class ContaBancariaController extends Controller
      */
     public function index()
     {
-        $Data = ContaBancaria::all();
+        $Data = UnidadeProduto::all();
         if (count($Data)) {
             return response()->success($Data);
         }
-        return response()->error(trans('messages.crud.MAE', ['name' => $this->name]));
+        return response()->error(trans('messages.crud.FAE', ['name' => $this->name]));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ContaBancariaRequest $request
+     * @param  UnidadeProdutoRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContaBancariaRequest $request)
+    public function store(UnidadeProdutoRequest $request)
     {
         try {
             $data = $request->all();
-            $Data = ContaBancaria::create($data);
+            $Data = UnidadeProduto::create($data);
         } catch (Exception $e) {
             return response()->error($e->getMessage);
         }
@@ -48,7 +48,7 @@ class ContaBancariaController extends Controller
      */
     public function show($id)
     {
-        $Data = ContaBancaria::find($id);
+        $Data = UnidadeProduto::find($id);
         if (count($Data)) {
             return response()->success($Data);
         } else {
@@ -59,13 +59,13 @@ class ContaBancariaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  ContaBancariaRequest $request
+     * @param  UnidadeProdutoRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ContaBancariaRequest $request, $id)
+    public function update(UnidadeProdutoRequest $request, $id)
     {
-        $Data = ContaBancaria::find($id);
+        $Data = UnidadeProduto::find($id);
         if (count($Data)) {
             try {
                 $data = $request->all();
@@ -87,7 +87,7 @@ class ContaBancariaController extends Controller
      */
     public function destroy($id)
     {
-        $Data = ContaBancaria::find($id);
+        $Data = UnidadeProduto::find($id);
         if (count($Data)) {
             try {
                 $Data->delete();

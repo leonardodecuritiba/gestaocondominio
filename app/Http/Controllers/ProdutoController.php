@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContaBancaria;
-use App\Http\Requests\ContaBancariaRequest;
+use App\Models\Produto;
+use App\Http\Requests\ProdutoRequest;
 
-class ContaBancariaController extends Controller
+class ProdutoController extends Controller
 {
-    private $name = 'ContaBancaria';
+    private $name = 'Produto';
 
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ContaBancariaController extends Controller
      */
     public function index()
     {
-        $Data = ContaBancaria::all();
+        $Data = Produto::all();
         if (count($Data)) {
             return response()->success($Data);
         }
@@ -26,18 +26,18 @@ class ContaBancariaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ContaBancariaRequest $request
+     * @param  ProdutoRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContaBancariaRequest $request)
+    public function store(ProdutoRequest $request)
     {
         try {
             $data = $request->all();
-            $Data = ContaBancaria::create($data);
+            $Data = Produto::create($data);
         } catch (Exception $e) {
             return response()->error($e->getMessage);
         }
-        return response()->success(trans('messages.crud.FSS', ['name' => $this->name]));
+        return response()->success(trans('messages.crud.MSS', ['name' => $this->name]));
     }
 
     /**
@@ -48,24 +48,24 @@ class ContaBancariaController extends Controller
      */
     public function show($id)
     {
-        $Data = ContaBancaria::find($id);
+        $Data = Produto::find($id);
         if (count($Data)) {
             return response()->success($Data);
         } else {
-            return response()->error(trans('messages.crud.FGE', ['name' => $this->name]));
+            return response()->error(trans('messages.crud.MGE', ['name' => $this->name]));
         }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  ContaBancariaRequest $request
+     * @param  ProdutoRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ContaBancariaRequest $request, $id)
+    public function update(ProdutoRequest $request, $id)
     {
-        $Data = ContaBancaria::find($id);
+        $Data = Produto::find($id);
         if (count($Data)) {
             try {
                 $data = $request->all();
@@ -73,9 +73,9 @@ class ContaBancariaController extends Controller
             } catch (Exception $e) {
                 return response()->error($e->getMessage);
             }
-            return response()->success(trans('messages.crud.FUS', ['name' => $this->name]));
+            return response()->success(trans('messages.crud.MUS', ['name' => $this->name]));
         } else {
-            return response()->error(trans('messages.crud.FGE', ['name' => $this->name]));
+            return response()->error(trans('messages.crud.MGE', ['name' => $this->name]));
         }
     }
 
@@ -87,16 +87,16 @@ class ContaBancariaController extends Controller
      */
     public function destroy($id)
     {
-        $Data = ContaBancaria::find($id);
+        $Data = Produto::find($id);
         if (count($Data)) {
             try {
                 $Data->delete();
             } catch (Exception $e) {
                 return response()->error($e->getMessage);
             }
-            return response()->success(trans('messages.crud.FDS', ['name' => $this->name]));
+            return response()->success(trans('messages.crud.MDS', ['name' => $this->name]));
         } else {
-            return response()->error(trans('messages.crud.FGE', ['name' => $this->name]));
+            return response()->error(trans('messages.crud.MGE', ['name' => $this->name]));
         }
 
     }

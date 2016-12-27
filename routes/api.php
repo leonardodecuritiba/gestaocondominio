@@ -51,9 +51,13 @@ Route::resource('situacao_inadimplencias', 'SituacaoInadimplenciaController');
 //financeiro_bancario_v1.a
 Route::resource('bancos', 'BancoController');
 Route::resource('conta_bancarias', 'ContaBancariaController');
-
 //financeiro_estoque_v1.a
-
+Route::resource('unidade_produtos', 'UnidadeProdutoController');
+Route::resource('grupo_produtos', 'GrupoProdutoController');
+Route::resource('produtos', 'ProdutoController');
+//financeiro_diversos_v1.a
+Route::resource('departamentos', 'DepartamentoController');
+Route::resource('feriados', 'FeriadoController');
 
 //Route::resource('contatos', 'ContatoController');
 //Route::resource('telefones', 'TelefoneController');
