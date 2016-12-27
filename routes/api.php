@@ -38,6 +38,9 @@ Route::resource('documentos', 'DocumentoController');
 Route::resource('area_externas', 'AreaExternaController');
 Route::resource('imovel_permanentes', 'ImovelPermanenteController');
 
+//Route::resource('contatos', 'ContatoController');
+//Route::resource('telefones', 'TelefoneController');
+//Route::resource('emails', 'EmailController');
 /*
 |--------------------------------------------------------------------------
 | API Basic Routes - FINANCEIRO
@@ -58,7 +61,3 @@ Route::resource('produtos', 'ProdutoController');
 //financeiro_diversos_v1.a
 Route::resource('departamentos', 'DepartamentoController');
 Route::resource('feriados', 'FeriadoController');
-
-//Route::resource('contatos', 'ContatoController');
-//Route::resource('telefones', 'TelefoneController');
-//Route::resource('emails', 'EmailController');

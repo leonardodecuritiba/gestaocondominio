@@ -7,7 +7,7 @@ use App\Http\Requests\ContaBancariaRequest;
 
 class ContaBancariaController extends Controller
 {
-    private $name = 'ContaBancaria';
+    private $name = 'Conta Bancaria';
 
     /**
      * Display a listing of the resource.
