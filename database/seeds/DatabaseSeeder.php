@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
         //financeiro_diversos_v1.a
         $this->call(DepartamentoSeeder::class);
         $this->call(FeriadoSeeder::class);
+        $this->call(LayoutArquivoSeeder::class);
 
     }
 }

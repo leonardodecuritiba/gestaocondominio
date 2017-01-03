@@ -16,7 +16,6 @@ class Lancamento extends Model
         'idtipo_lancamento',
         'descricao',
         'valor',
-        'data_vencimento',
         'tipo',
         'observacao'
     ];

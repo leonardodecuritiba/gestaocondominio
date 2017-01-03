@@ -20,7 +20,6 @@ class CreateLancamentosTable extends Migration
 
             $table->string('descricao', 100);
             $table->decimal('valor', 20, 2);
-            $table->date('data_vencimento');
             $table->enum('tipo', ['AVULSO', 'PRE', 'RECORRENTE']);
             $table->string('observacao', 500)->nullable();
             $table->softDeletes();

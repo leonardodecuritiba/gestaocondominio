@@ -64,4 +64,6 @@ Route::resource('feriados', 'FeriadoController');
 Route::resource('layout_arquivos', 'LayoutArquivoController');
 
 //financeiro_receitas_v1.a
-Route::resource('avulsos', 'AvulsoController');
+Route::resource('lancamento_avulsos', 'AvulsoController');
+Route::resource('lancamentos', 'LancamentoController');
+Route::resource('recebimentos', 'RecebimentoController');

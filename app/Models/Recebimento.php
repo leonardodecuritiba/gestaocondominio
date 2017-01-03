@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\DataHelper;
 use Illuminate\Database\Eloquent\Model;
 
 class Recebimento extends Model
@@ -33,6 +34,17 @@ class Recebimento extends Model
         'numero_cheque',
         'data_vencimento'
     ];
+
+
+    public function setDataVencimentoAttribute($value)
+    {
+        return $this->attributes['data_vencimento'] = DataHelper::setDate($value);
+    }
+
+    public function getDataVencimentoAttribute($value)
+    {
+        return DataHelper::getPrettyDate($value);
+    }
     // ******************** RELASHIONSHIP ******************************
     // ************************** belongsTo ****************************
     public function lancamento()

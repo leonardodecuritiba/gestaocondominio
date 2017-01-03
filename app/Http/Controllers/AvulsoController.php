@@ -18,7 +18,7 @@ class AvulsoController extends Controller
      */
     public function index()
     {
-        $Data = Avulso::all();
+        $Data = Avulso::complete();
         if (count($Data)) {
             return response()->success($Data);
         }
@@ -36,14 +36,16 @@ class AvulsoController extends Controller
         try {
             /*
                     //VERIFICAR DADOS - LANÇAMENTO - AVULSO - RECEBIMENTO
-                    //LANÇAMENTO: descricao, valor, data_vencimento
-                    'descricao'         => 'required|min:3|max:100',
-                    'valor'             => 'required',
-                    'data_vencimento'   => 'required',
+                    //LANÇAMENTO: idtipo_lancamento, descricao, valor, data_vencimento
+                    'idtipo_lancamento' => 'required|exists:tipo_lancamentos,id',
+                    'descricao' => 'required|min:3|max:100',
+                    'valor' => 'required',
+                    //AVULSO: data_vencimento
+                    'data_vencimento' => 'required',
                     //RECEBIMENTO: idconta_bancaria, idlayout_arquivo, idimovel
-                    'idconta_bancaria'  => 'required|exists:conta_bancarias,id',
-                    'idlayout_arquivo'  => 'required|exists:layout_arquivos,id',
-                    'idimovel'          => 'required|exists:imovels,id',
+                    'idconta_bancaria' => 'required|exists:conta_bancarias,id',
+                    'idlayout_arquivo' => 'required|exists:layout_arquivos,id',
+                    'idimovel' => 'required|exists:imovels,id',
             */
             $data = $request->all();
             $Lancamento = Lancamento::create($data);
@@ -64,7 +66,7 @@ class AvulsoController extends Controller
      */
     public function show($id)
     {
-        $Data = Avulso::find($id);
+        $Data = Avulso::complete($id);
         if (count($Data)) {
             return response()->success($Data);
         } else {

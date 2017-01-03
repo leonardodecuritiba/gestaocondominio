@@ -26,7 +26,7 @@ class AvulsoRequest extends FormRequest
      */
     public function rules()
     {
-        $Data = Avulso::find($this->avulso);
+        $Data = Avulso::find($this->lancamento_avulso);
         $id = count($Data) ? $Data->id : 0;
         switch ($this->method()) {
             case 'GET':
@@ -41,6 +41,7 @@ class AvulsoRequest extends FormRequest
                     'idtipo_lancamento' => 'required|exists:tipo_lancamentos,id',
                     'descricao' => 'required|min:3|max:100',
                     'valor' => 'required',
+                    //AVULSO: data_vencimento
                     'data_vencimento' => 'required',
                     //RECEBIMENTO: idconta_bancaria, idlayout_arquivo, idimovel
                     'idconta_bancaria' => 'required|exists:conta_bancarias,id',
