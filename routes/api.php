@@ -61,3 +61,7 @@ Route::resource('produtos', 'ProdutoController');
 //financeiro_diversos_v1.a
 Route::resource('departamentos', 'DepartamentoController');
 Route::resource('feriados', 'FeriadoController');
+Route::resource('layout_arquivos', 'LayoutArquivoController');
+
+//financeiro_receitas_v1.a
+Route::resource('avulsos', 'AvulsoController');
