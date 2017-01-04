@@ -23,4 +23,15 @@ class TipoLancamento extends Model
     {
         return $this->belongsTo('App\Models\GrupoLancamento', 'idgrupo_lancamento');
     }
+
+    // ************************** hasMany ****************************
+    public function pre_lancamentos()
+    {
+        return $this->hasMany('App\Models\PreLancamento', 'idtipo_lancamento');
+    }
+
+    public function lancamento_recorrentes()
+    {
+        return $this->hasMany('App\Models\LancamentoRecorrente', 'idtipo_lancamento');
+    }
 }

@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Pre;
+use App\Models\LancamentoRecorrente;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 
 
-class PreRequest extends FormRequest
+class LancamentoRecorrenteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class PreRequest extends FormRequest
      */
     public function rules()
     {
-        $Data = Pre::find($this->pre);
+        $Data = LancamentoRecorrente::find($this->lancamento_recorrente);
         $id = count($Data) ? $Data->id : 0;
         switch ($this->method()) {
             case 'GET':
@@ -35,17 +35,13 @@ class PreRequest extends FormRequest
                 break;
             }
             case 'POST': {
-                return [
-                    //VERIFICAR DADOS - LANÇAMENTO - PRE - RECEBIMENTO
-                    //LANÇAMENTO: idtipo_lancamento, descricao, valor, (data_vencimento: SERÁ NULL, POIS SERÁ ANEXADO AO BOLETO DA PRÓXIMA TAXA ASSOCIATIVA)
+                $validations = [
                     'idtipo_lancamento' => 'required|exists:tipo_lancamentos,id',
-                    'descricao' => 'required|min:3|max:100',
                     'valor' => 'required',
-
-                    //RECEBIMENTO: idconta_bancaria, idlayout_arquivo, idimovel
-                    'idconta_bancaria' => 'required|exists:conta_bancarias,id',
-                    'idimovel' => 'required|exists:imovels,id',
+                    'tipo_associacao' => 'required'
                 ];
+                $validations = ($this->get('tipo_associacao') == 'LOCALIZACAO') ? array_merge($validations, ['idlocalidade' => 'required|exists:localidades,id']) : $validations;
+                return $validations;
                 break;
             }
             case 'PUT':

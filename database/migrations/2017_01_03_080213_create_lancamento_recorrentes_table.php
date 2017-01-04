@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecorrentesTable extends Migration
+class CreateLancamentoRecorrentesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateRecorrentesTable extends Migration
      */
     public function up()
     {
-        Schema::create('recorrentes', function (Blueprint $table) {
+        Schema::create('lancamento_recorrentes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('idlancamento');
-            $table->foreign('idlancamento')->references('id')->on('lancamentos')->onDelete('cascade');
-            $table->unsignedInteger('idlocalidade');
+            $table->unsignedInteger('idlocalidade')->nullable();
             $table->foreign('idlocalidade')->references('id')->on('localidades')->onDelete('cascade');
+            $table->unsignedInteger('idtipo_lancamento');
+            $table->foreign('idtipo_lancamento')->references('id')->on('tipo_lancamentos')->onDelete('cascade');
 
-            $table->enum('tipo', ['IMOVEIS', 'PARCEIROS', 'LOCALIZACAO']);
-            $table->decimal('valor_desconto', 20, 2)->nullable();
-            $table->string('descricao_desconto', 200)->nullable();
+            $table->decimal('valor', 20, 2);
+            $table->enum('tipo_associacao', ['IMÓVEIS', 'PARCEIROS', 'LOCALIZAÇÃO']);
+            $table->date('data_expiracao')->nullable();
             $table->boolean('fixo')->default(0);
             $table->softDeletes();
             $table->timestamps();
@@ -36,6 +36,6 @@ class CreateRecorrentesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recorrentes');
+        Schema::dropIfExists('lancamento_recorrentes');
     }
 }

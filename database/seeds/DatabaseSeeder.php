@@ -50,5 +50,11 @@ class DatabaseSeeder extends Seeder
         $this->call(FeriadoSeeder::class);
         $this->call(LayoutArquivoSeeder::class);
 
+        //financeiro_receitas_v1.a
+        $this->call(LancamentoAvulsoSeeder::class);
+        $this->call(PreLancamentoSeeder::class);
+        $this->call(LancamentoRecorrenteSeeder::class);
+
+
     }
 }

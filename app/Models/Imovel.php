@@ -91,4 +91,8 @@ class Imovel extends Model
         return $this->hasMany('App\Models\ImovelPermanente', 'id_imovel');
     }
 
+    public function pre_lancamentos()
+    {
+        return $this->hasMany('App\Models\PreLancamento', 'idimovel');
+    }
 }

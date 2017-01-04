@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Recorrente;
+use App\Models\PreLancamento;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 
 
-class RecorrenteRequest extends FormRequest
+class PreLancamentoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class RecorrenteRequest extends FormRequest
      */
     public function rules()
     {
-        $Data = Recorrente::find($this->recorrente);
+        $Data = PreLancamento::find($this->pre_lancamento);
         $id = count($Data) ? $Data->id : 0;
         switch ($this->method()) {
             case 'GET':
@@ -36,16 +36,10 @@ class RecorrenteRequest extends FormRequest
             }
             case 'POST': {
                 return [
-                    //VERIFICAR DADOS - LANÇAMENTO - AVULSO - RECEBIMENTO
-                    //LANÇAMENTO: idtipo_lancamento, descricao, valor, data_vencimento
+                    'idimovel' => 'required|exists:imovels,id',
                     'idtipo_lancamento' => 'required|exists:tipo_lancamentos,id',
                     'descricao' => 'required|min:3|max:100',
-                    'valor' => 'required',
-                    'data_vencimento' => 'required',
-                    //RECEBIMENTO: idconta_bancaria, idlayout_arquivo, idimovel
-                    'idconta_bancaria' => 'required|exists:conta_bancarias,id',
-                    'idlayout_arquivo' => 'required|exists:layout_arquivos,id',
-                    'idimovel' => 'required|exists:imovels,id',
+                    'valor' => 'required'
                 ];
                 break;
             }

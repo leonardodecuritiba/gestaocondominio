@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Avulso;
+use App\Models\LancamentoAvulso;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 
 
-class AvulsoRequest extends FormRequest
+class LancamentoAvulsoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class AvulsoRequest extends FormRequest
      */
     public function rules()
     {
-        $Data = Avulso::find($this->lancamento_avulso);
+        $Data = LancamentoAvulso::find($this->lancamento_avulso);
         $id = count($Data) ? $Data->id : 0;
         switch ($this->method()) {
             case 'GET':
@@ -36,17 +36,13 @@ class AvulsoRequest extends FormRequest
             }
             case 'POST': {
                 return [
-                    //VERIFICAR DADOS - LANÇAMENTO - AVULSO - RECEBIMENTO
-                    //LANÇAMENTO: idtipo_lancamento, descricao, valor, data_vencimento
-                    'idtipo_lancamento' => 'required|exists:tipo_lancamentos,id',
-                    'descricao' => 'required|min:3|max:100',
-                    'valor' => 'required',
-                    //AVULSO: data_vencimento
-                    'data_vencimento' => 'required',
-                    //RECEBIMENTO: idconta_bancaria, idlayout_arquivo, idimovel
                     'idconta_bancaria' => 'required|exists:conta_bancarias,id',
                     'idlayout_arquivo' => 'required|exists:layout_arquivos,id',
                     'idimovel' => 'required|exists:imovels,id',
+                    'idtipo_lancamento' => 'required|exists:tipo_lancamentos,id',
+                    'descricao' => 'required|min:3|max:100',
+                    'valor' => 'required',
+                    'data_vencimento' => 'required',
                 ];
                 break;
             }

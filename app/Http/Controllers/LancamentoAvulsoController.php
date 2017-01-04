@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PreRequest;
-use App\Models\Pre;
-use App\Models\Lancamento;
-use App\Models\Recebimento;
+use App\Http\Requests\LancamentoAvulsoRequest;
+use App\Models\LancamentoAvulso;
 
-class PreController extends Controller
+class LancamentoAvulsoController extends Controller
 {
-    private $name = 'Pré-Lançamento';
+    private $name = 'Lançamento Avulso';
 
     /**
      * Display a listing of the resource.
@@ -18,7 +16,7 @@ class PreController extends Controller
      */
     public function index()
     {
-        $Data = Pre::all();
+        $Data = LancamentoAvulso::complete();
         if (count($Data)) {
             return response()->success($Data);
         }
@@ -28,28 +26,13 @@ class PreController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  PreRequest $request
+     * @param  LancamentoAvulsoRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PreRequest $request)
+    public function store(LancamentoAvulsoRequest $request)
     {
         try {
-            /*
-                    //VERIFICAR DADOS - LANÇAMENTO - PRE - RECEBIMENTO
-                    //LANÇAMENTO: descricao, valor, (data_vencimento SERÁ NULL, POIS SERÁ ANEXADO AO BOLETO DA PRÓXIMA TAXA ASSOCIATIVA)
-                    'descricao'         => 'required|min:3|max:100',
-                    'valor'             => 'required',
-                    'data_vencimento'   => 'required',
-                    //RECEBIMENTO: idconta_bancaria, idlayout_arquivo, idimovel
-                    'idconta_bancaria'  => 'required|exists:conta_bancarias,id',
-                    'idlayout_arquivo'  => 'required|exists:layout_arquivos,id',
-                    'idimovel'          => 'required|exists:imovels,id',
-            */
-            $data = $request->all();
-            $Lancamento = Lancamento::create($data);
-            $data['idlancamento'] = $Lancamento->id;
-            Pre::create($data);
-            Recebimento::create($data);
+            LancamentoAvulso::create($request->all());
         } catch (Exception $e) {
             return response()->error($e->getMessage);
         }
@@ -64,7 +47,7 @@ class PreController extends Controller
      */
     public function show($id)
     {
-        $Data = Pre::find($id);
+        $Data = LancamentoAvulso::complete($id);
         if (count($Data)) {
             return response()->success($Data);
         } else {
@@ -75,13 +58,13 @@ class PreController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  PreRequest $request
+     * @param  LancamentoAvulsoRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PreRequest $request, $id)
+    public function update(LancamentoAvulsoRequest $request, $id)
     {
-        $Data = Pre::find($id);
+        $Data = LancamentoAvulso::find($id);
         if (count($Data)) {
             try {
                 $data = $request->all();
@@ -103,7 +86,7 @@ class PreController extends Controller
      */
     public function destroy($id)
     {
-        $Data = Pre::find($id);
+        $Data = LancamentoAvulso::find($id);
         if (count($Data)) {
             try {
                 $Data->delete();

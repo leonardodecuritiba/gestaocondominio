@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AvulsoRequest;
-use App\Models\Avulso;
+use App\Http\Requests\LancamentoRecorrenteRequest;
+use App\Models\LancamentoRecorrente;
 use App\Models\Lancamento;
 use App\Models\Recebimento;
 
-class AvulsoController extends Controller
+class LancamentoRecorrenteController extends Controller
 {
-    private $name = 'Lançamento Avulso';
+    private $name = 'Lançamento Recorrente';
 
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class AvulsoController extends Controller
      */
     public function index()
     {
-        $Data = Avulso::complete();
+        $Data = LancamentoRecorrente::complete();
         if (count($Data)) {
             return response()->success($Data);
         }
@@ -28,30 +28,13 @@ class AvulsoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  AvulsoRequest $request
+     * @param  LancamentoRecorrenteRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AvulsoRequest $request)
+    public function store(LancamentoRecorrenteRequest $request)
     {
         try {
-            /*
-                    //VERIFICAR DADOS - LANÇAMENTO - AVULSO - RECEBIMENTO
-                    //LANÇAMENTO: idtipo_lancamento, descricao, valor, data_vencimento
-                    'idtipo_lancamento' => 'required|exists:tipo_lancamentos,id',
-                    'descricao' => 'required|min:3|max:100',
-                    'valor' => 'required',
-                    //AVULSO: data_vencimento
-                    'data_vencimento' => 'required',
-                    //RECEBIMENTO: idconta_bancaria, idlayout_arquivo, idimovel
-                    'idconta_bancaria' => 'required|exists:conta_bancarias,id',
-                    'idlayout_arquivo' => 'required|exists:layout_arquivos,id',
-                    'idimovel' => 'required|exists:imovels,id',
-            */
-            $data = $request->all();
-            $Lancamento = Lancamento::create($data);
-            $data['idlancamento'] = $Lancamento->id;
-            Avulso::create($data);
-            Recebimento::create($data);
+            LancamentoRecorrente::create($request->all());
         } catch (Exception $e) {
             return response()->error($e->getMessage);
         }
@@ -66,7 +49,7 @@ class AvulsoController extends Controller
      */
     public function show($id)
     {
-        $Data = Avulso::complete($id);
+        $Data = LancamentoRecorrente::complete($id);
         if (count($Data)) {
             return response()->success($Data);
         } else {
@@ -77,13 +60,13 @@ class AvulsoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  AvulsoRequest $request
+     * @param  LancamentoRecorrenteRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AvulsoRequest $request, $id)
+    public function update(LancamentoRecorrenteRequest $request, $id)
     {
-        $Data = Avulso::find($id);
+        $Data = LancamentoRecorrente::find($id);
         if (count($Data)) {
             try {
                 $data = $request->all();
@@ -105,7 +88,7 @@ class AvulsoController extends Controller
      */
     public function destroy($id)
     {
-        $Data = Avulso::find($id);
+        $Data = LancamentoRecorrente::find($id);
         if (count($Data)) {
             try {
                 $Data->delete();

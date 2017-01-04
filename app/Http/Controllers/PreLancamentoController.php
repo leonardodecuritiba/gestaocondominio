@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RecorrenteRequest;
-use App\Models\Recorrente;
+use App\Http\Requests\PreLancamentoRequest;
+use App\Models\PreLancamento;
 use App\Models\Lancamento;
 use App\Models\Recebimento;
 
-class RecorrenteController extends Controller
+class PreLancamentoController extends Controller
 {
-    private $name = 'Lançamento Recorrente';
+    private $name = 'Pré-Lançamento';
 
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class RecorrenteController extends Controller
      */
     public function index()
     {
-        $Data = Recorrente::all();
+        $Data = PreLancamento::complete();
         if (count($Data)) {
             return response()->success($Data);
         }
@@ -28,28 +28,13 @@ class RecorrenteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  RecorrenteRequest $request
+     * @param  PreLancamentoRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RecorrenteRequest $request)
+    public function store(PreLancamentoRequest $request)
     {
         try {
-            /*
-                    //VERIFICAR DADOS - LANÇAMENTO - AVULSO - RECEBIMENTO
-                    //LANÇAMENTO: descricao, valor, data_vencimento
-                    'descricao'         => 'required|min:3|max:100',
-                    'valor'             => 'required',
-                    'data_vencimento'   => 'required',
-                    //RECEBIMENTO: idconta_bancaria, idlayout_arquivo, idimovel
-                    'idconta_bancaria'  => 'required|exists:conta_bancarias,id',
-                    'idlayout_arquivo'  => 'required|exists:layout_arquivos,id',
-                    'idimovel'          => 'required|exists:imovels,id',
-            */
-            $data = $request->all();
-            $Lancamento = Lancamento::create($data);
-            $data['idlancamento'] = $Lancamento->id;
-            Recorrente::create($data);
-            Recebimento::create($data);
+            PreLancamento::create($request->all());
         } catch (Exception $e) {
             return response()->error($e->getMessage);
         }
@@ -64,7 +49,7 @@ class RecorrenteController extends Controller
      */
     public function show($id)
     {
-        $Data = Recorrente::find($id);
+        $Data = PreLancamento::complete($id);
         if (count($Data)) {
             return response()->success($Data);
         } else {
@@ -75,13 +60,13 @@ class RecorrenteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  RecorrenteRequest $request
+     * @param  PreLancamentoRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RecorrenteRequest $request, $id)
+    public function update(PreLancamentoRequest $request, $id)
     {
-        $Data = Recorrente::find($id);
+        $Data = PreLancamento::find($id);
         if (count($Data)) {
             try {
                 $data = $request->all();
@@ -103,7 +88,7 @@ class RecorrenteController extends Controller
      */
     public function destroy($id)
     {
-        $Data = Recorrente::find($id);
+        $Data = PreLancamento::find($id);
         if (count($Data)) {
             try {
                 $Data->delete();

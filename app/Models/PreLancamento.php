@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Avulso extends Model
+class PreLancamento extends Model
 {
     static public $associations = [
-        'lancamento',
-        'lancamento.tipo_lancamento',
-        'lancamento.recebimentos',
-        'lancamento.recebimentos.conta_bancaria'
+        'imovel',
+        'tipo_lancamento'
     ];
     public $timestamps = true;
     /**
@@ -19,9 +17,13 @@ class Avulso extends Model
      * @var array
      */
     protected $fillable = [
-        'idlancamento',
-        'cancelamento',
-        'motivo_cancelamento'
+        'idimovel',
+        'idtipo_lancamento',
+        'descricao',
+        'valor',
+        'observacao',
+        'valor_desconto',
+        'descricao_desconto'
     ];
 
     static public function complete($id = NULL)
@@ -30,8 +32,13 @@ class Avulso extends Model
     }
     // ******************** RELASHIONSHIP ******************************
     // ************************** belongsTo ****************************
-    public function lancamento()
+    public function imovel()
     {
-        return $this->belongsTo('App\Models\Lancamento', 'idlancamento');
+        return $this->belongsTo('App\Models\Imovel', 'idimovel');
+    }
+
+    public function tipo_lancamento()
+    {
+        return $this->belongsTo('App\Models\TipoLancamento', 'idtipo_lancamento');
     }
 }
