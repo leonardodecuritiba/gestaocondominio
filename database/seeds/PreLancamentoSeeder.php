@@ -25,7 +25,8 @@ class PreLancamentoSeeder extends Seeder
             ['idimovel' => 3, 'idtipo_lancamento' => 1, 'descricao' => 'Lançamento x1', 'valor' => 100000, 'observacao' => ''],
         ];
         foreach ($data as $dt) {
-            \App\Models\PreLancamento::create($dt);
+            $Lanc = \App\Models\PreLancamento::create($dt);
+            \App\Models\Lancamento::create(['idpre_lancamento' => $Lanc->id]);
         }
         echo "\n*** Completo em " . round((microtime(true) - $start), 3) . "s ***";
     }

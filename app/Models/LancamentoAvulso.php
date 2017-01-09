@@ -11,7 +11,8 @@ class LancamentoAvulso extends Model
         'conta_bancaria',
         'layout_arquivo',
         'imovel',
-        'tipo_lancamento'
+        'tipo_lancamento',
+        'lancamento'
     ];
     public $timestamps = true;
     /**
@@ -77,5 +78,11 @@ class LancamentoAvulso extends Model
     public function tipo_lancamento()
     {
         return $this->belongsTo('App\Models\TipoLancamento', 'idtipo_lancamento');
+    }
+
+    // ************************** hasOne ****************************
+    public function lancamento()
+    {
+        return $this->hasOne('App\Models\Lancamento', 'idlancamento_avulso');
     }
 }

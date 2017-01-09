@@ -15,16 +15,18 @@ class CreateRecebimentosTable extends Migration
     {
         Schema::create('recebimentos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('idlancamento');
-            $table->foreign('idlancamento')->references('id')->on('lancamentos')->onDelete('cascade');
             $table->unsignedInteger('idconta_bancaria');
             $table->foreign('idconta_bancaria')->references('id')->on('conta_bancarias')->onDelete('cascade');
-            $table->unsignedInteger('idlayout_arquivo')->nullable();
+            $table->unsignedInteger('idlayout_arquivo');
             $table->foreign('idlayout_arquivo')->references('id')->on('layout_arquivos')->onDelete('cascade');
+            $table->unsignedInteger('idlancamento');
+            $table->foreign('idlancamento')->references('id')->on('lancamentos')->onDelete('cascade');
             $table->unsignedInteger('idimovel')->nullable();
             $table->foreign('idimovel')->references('id')->on('imovels')->onDelete('cascade');
             $table->unsignedInteger('idassociado')->nullable();
             $table->foreign('idassociado')->references('id')->on('associados')->onDelete('cascade');
+            $table->unsignedInteger('iddados_cheque')->nullable();
+            $table->foreign('iddados_cheque')->references('id')->on('dados_cheques')->onDelete('cascade');
 
             $table->enum('forma_pagamento', ['DINHEIRO', 'CHEQUE', 'TITULO'])->nullable();
             $table->date('data_agendamento')->nullable();

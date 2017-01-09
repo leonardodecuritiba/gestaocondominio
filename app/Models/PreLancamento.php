@@ -8,7 +8,8 @@ class PreLancamento extends Model
 {
     static public $associations = [
         'imovel',
-        'tipo_lancamento'
+        'tipo_lancamento',
+        'lancamento'
     ];
     public $timestamps = true;
     /**
@@ -40,5 +41,11 @@ class PreLancamento extends Model
     public function tipo_lancamento()
     {
         return $this->belongsTo('App\Models\TipoLancamento', 'idtipo_lancamento');
+    }
+
+    // ************************** hasOne ****************************
+    public function lancamento()
+    {
+        return $this->hasOne('App\Models\Lancamento', 'idpre_lancamento');
     }
 }

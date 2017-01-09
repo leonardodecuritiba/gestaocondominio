@@ -26,7 +26,8 @@ class LancamentoAvulsoSeeder extends Seeder
 
         ];
         foreach ($data as $dt) {
-            \App\Models\LancamentoAvulso::create($dt);
+            $Lanc = \App\Models\LancamentoAvulso::create($dt);
+            \App\Models\Lancamento::create(['idlancamento_avulso' => $Lanc->id]);
         }
         echo "\n*** Completo em " . round((microtime(true) - $start), 3) . "s ***";
     }
